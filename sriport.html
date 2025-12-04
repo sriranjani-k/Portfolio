@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sriranjani - Professional Portfolio</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <style>
+  
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    :root{
+      --accent:#0be6dd;--muted:#7b7b7b;--bg:#0f1724;--card:#071023;--glass:rgba(255,255,255,0.04)
+    }
+    body{background:linear-gradient(180deg,#071428 0%, #071426 40%, #071421 100%);color:#e6eef7;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);z-index:50}
+    .logo{font-weight:700;color:var(--accent);font-size:20px}
+    .navbar a{margin-left:18px;padding:8px 12px;border-radius:8px;transition:all .2s ease;color:#cfeaf0}
+    .navbar a.active, .navbar a:hover{background:rgba(11,230,221,0.08);color:var(--accent);transform:translateY(-2px)}
+
+    .home{display:flex;align-items:center;gap:40px;padding:80px 40px}
+    .home-content{max-width:760px}
+    .home h3{color:var(--accent);font-weight:600}
+    .home h1{font-size:40px;margin:10px 0}
+    .home h3 .text{color:var(--accent);font-weight:700}
+    .home p{color:var(--muted);margin:14px 0 20px}
+    .home .home-sci a{margin-right:10px;font-size:24px;opacity:.95}
+    .btn-box{display:inline-block;padding:10px 16px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#6af7f0);color:#032024;font-weight:600}
+
+    .main-grid{display:grid;grid-template-columns:360px 1fr;gap:32px;padding:30px 40px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:14px;box-shadow:0 6px 20px rgba(2,6,23,0.7)}
+    .profile-pic{width:100%;height:360px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#052033,#08314a);display:flex;align-items:center;justify-content:center}
+    .profile-pic img{width:100%;height:100%;object-fit:cover}
+    .profile-info{margin-top:16px}
+    .profile-info h2{font-size:20px;margin-bottom:6px}
+    .meta{color:var(--muted);font-size:14px}
+    .contact-list{margin-top:12px}
+    .contact-list li{list-style:none;margin:8px 0;color:#bfeff4}
+    .sub-title{color:#cfeaf0;font-size:26px;margin-bottom:14px}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .project{padding:16px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.03)}
+    .project h3{margin:10px 0;color:var(--accent)}
+    .project p{color:var(--muted);font-size:14px}
+    .tech{margin-top:8px;font-size:13px;color:#d7f7fb}
+    .badge{display:inline-block;padding:6px 8px;border-radius:8px;background:rgba(11,230,221,0.08);color:var(--accent);font-weight:600;margin-right:8px}
+
+    .skills-row{display:flex;gap:18px;flex-wrap:wrap}
+    .skill{flex:1;min-width:180px;padding:12px;background:rgba(255,255,255,0.02);border-radius:10px}
+    .skill h4{margin-bottom:8px}
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:10px;overflow:hidden}
+    .progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#7bf0ea);width:60%}
+
+    .pub-list{margin-top:8px}
+    .pub{padding:12px;background:rgba(255,255,255,0.02);border-radius:8px;margin-bottom:8px}
+    .pub h4{font-size:15px}
+    .pub small{color:var(--muted)}
+
+    .education{display:flex;gap:12px;flex-direction:column}
+    .education .edu-item{padding:12px;background:rgba(255,255,255,0.02);border-radius:8px}
+    .contact-grid{display:flex;gap:20px;flex-wrap:wrap}
+    .contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:10px}
+    .send{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;color:#022;cursor:pointer}
+    @media (max-width:900px){.main-grid{grid-template-columns:1fr}.home{padding:36px 20px}.header{padding:12px 18px}}
+
+    .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+    .muted{color:var(--muted)}
+    .right{margin-left:auto}
+
+    .timeline-container {
+  overflow-x: auto;
+  padding: 10px 0;
+}
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  min-width: 900px;
+  position: relative;
+  margin-top: 20px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent), #4ff7e9);
+  border-radius: 2px;
+}
+.milestone {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  width: 160px;
+}
+.milestone .icon {
+  font-size: 30px;
+  color: var(--accent);
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 12px rgba(11,230,221,0.3);
+  transition: transform 0.3s ease;
+}
+.milestone:hover .icon {
+  transform: scale(1.1);
+}
+.milestone .year {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #a8f4ef;
+}
+.milestone p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">Sriranjani K — Software Engineer</a>
+    <nav class="navbar">
+      <a href="#home" class="active">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#publications">PUBLICATIONS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <section id="home" class="home">
+    <div class="home-content fade-up">
+      <h3>Hello — I'm</h3>
+      <h1>Sriranjani Kumararaja</h1>
+      <h3>Software Engineer at <span class="muted">Hudsmer Business Solution, Chennai</span></h3>
+      <h3>And I'm a <span class="text" id="typed-role"></span></h3>
+      <p>Experienced front-end & mobile developer focused on React, React Native and modern web technologies. I build performant user interfaces, responsive landing pages, and multi-vendor mobile apps — bringing design to life with clean code and strong collaboration.</p>
+      <div style="margin-top:12px">
+        <a href="Resume Sriranjani (3) (1).pdf" class="btn-box">Download CV</a>
+        <a href="#contact" style="margin-left:12px;color:var(--accent)">Contact</a>
+      </div>
+      <div class="home-sci" style="margin-top:18px">
+        <a href="https://www.linkedin.com/in/sri-ranjani-k-76a377224"><i class='bx bxl-linkedin' ></i></a>
+        <a href="https://www.instagram.com/jovial_girl_2004"><i class='bx bxl-instagram' ></i></a>
+        <a href="wpQR.jpg"><i class='bx bxl-whatsapp' ></i></a>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-grid">
+ 
+    <aside class="card fade-up">
+      <div class="profile-pic">
+     
+        <img src="Sriranjanipic.png" alt="Sriranjani Photo">
+      </div>
+      <div class="profile-info">
+        <h2>Sriranjani K</h2>
+        <div class="meta">Software Engineer — Hudsmer Business Solution, Chennai</div>
+        <div class="contact-list">
+          <ul style="padding-left:14px;margin-top:12px">
+            <li><i class='bx bxs-envelope'></i> kumararajasriranjani@gmail.com</li>
+            <li><i class='bx bxs-phone-call'></i> +91 7305541304</li>
+            <li><i class='bx bxs-briefcase'></i> Frontend & Mobile Development</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <h4 class="sub-title">Quick Facts</h4>
+        <div class="muted">Location</div>
+        <div>Chennai, Tamil Nadu</div>
+        <div style="margin-top:8px" class="muted">Experience</div>
+        <div>Software Engineer — Frontend / React / React Native</div>
+      </div>
+
+      <div style="margin-top:18px">
+        <h4 class="sub-title">Education</h4>
+        <div class="education">
+          <div class="edu-item"><strong>B.E. (Hons.) – Computer Science & Engineering (AI Specialization) - National Engineering College</strong><div class="muted">2021 - 2025</div></div>
+        </div>
+      </div>
+    </aside>
+
+    <section>
+      <div class="card fade-up" id="about">
+        <h2 class="sub-title">About <span>Me</span></h2>
+        <p>Enthusiastic software engineer with hands-on experience working on production frontends, landing pages, multi-vendor mobile apps and admin dashboards. While at Hudsmer Business Solution I contributed to multiple client products and led frontend implementations using React and React Native. I enjoy translating designs into pixel-perfect, accessible UIs and implementing performant interfaces.</p>
+      </div>
+
+      <div class="card fade-up" id="skills" style="margin-top:18px">
+        <h2 class="sub-title">Technical <span>Skills</span></h2>
+        <div class="skills-row">
+          <div class="skill">
+            <h4>React</h4>
+            <div class="progress"><span style="width:85%"></span></div>
+            <div class="muted" style="margin-top:8px">Experienced building SPA, component libraries, hooks-based architecture</div>
+          </div>
+          <div class="skill">
+            <h4>React Native</h4>
+            <div class="progress"><span style="width:80%"></span></div>
+            <div class="muted" style="margin-top:8px">Built multi-vendor mobile apps and integration with backend APIs</div>
+          </div>
+          <div class="skill">
+            <h4>HTML / CSS / JS</h4>
+            <div class="progress"><span style="width:90%"></span></div>
+            <div class="muted" style="margin-top:8px">Responsive layouts, animations, accessibility</div>
+          </div>
+          <div class="skill">
+            <h4>Tools</h4>
+            <div class="progress"><span style="width:75%"></span></div>
+            <div class="muted" style="margin-top:8px">Git, Redux/Context, REST, Firebase, Expo</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4 class="sub-title">Professional Skills</h4>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div class="badge">Teamwork</div>
+            <div class="badge">Problem Solving</div>
+            <div class="badge">Communication</div>
+            <div class="badge">Creativity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up" id="projects" style="margin-top:18px">
+        <h2 class="sub-title">Office <span>Projects</span></h2>
+        <div class="projects-grid">
+          <div class="project">
+            <h3>Hudsmer Business Solution — Software Engineer</h3>
+            <p class="muted">Role: Frontend developer & collaborator across product teams. Implemented UI components, optimized bundle size, and worked closely with backend and QA.</p>
+            <div class="tech">Tech: React, JavaScript, HTML/CSS</div>
+          </div>
+
+          <div class="project">
+            <h3>Recychbs — Frontend (React)</h3>
+            <p class="muted">Worked on core frontend features using React. Implemented responsive pages, state management and API integration.</p>
+            <div class="tech">Tech: React, Redux/Context, REST APIs</div>
+          </div>
+
+          <div class="project">
+            <h3>Albatross — Landing page + Registration Form</h3>
+            <p class="muted">Built a modern marketing landing page and a signup/registration form integrated with backend endpoints and validation.</p>
+            <div class="tech">Tech: React (landing), HTML/CSS, Form validation</div>
+          </div>
+
+          <div class="project">
+            <h3>Modern Coffee — Landing Page</h3>
+            <p class="muted">Developed a pixel-perfect, responsive landing page with smooth animations and accessibility improvements.</p>
+            <div class="tech">Tech: HTML, CSS, JS</div>
+          </div>
+
+          <div class="project">
+            <h3>Shiralure — E-commerce/Lead Gen</h3>
+            <p class="muted">Implemented frontend flows for product showcases and lead generation features (discounts, CTA, Shop Now buttons).</p>
+            <div class="tech">Tech: React, JavaScript</div>
+          </div>
+
+          <div class="project">
+            <h3>Sewboss — 3-vendor Mobile App (React Native)</h3>
+            <p class="muted">Built a multi-vendor mobile application (3 vendor roles) using React Native. Implemented core screens, navigation, and vendor workflows. Also contributed to the admin dashboard (React) for vendor & order management.</p>
+            <div class="tech">Tech: React Native, Expo, React (Admin)</div>
+          </div>
+
+          <div class="project">
+            <h3>Ganesh Traders — Business Portal</h3>
+            <p class="muted">Worked on frontend improvements and product listing features for a B2B portal.</p>
+            <div class="tech">Tech: React, HTML/CSS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up" id="publications" style="margin-top:18px">
+        <h2 class="sub-title">Publications</h2>
+        <div class="pub-list">
+          <div class="pub">
+            <h4>MedConnect - A Comprehensive AI-driven Platform for Seamless Patient care and Optimization of Medical Services</h4>
+            <small>Publisher: IEEE<br>Authors: Ida Christy J; Abisha D; Navedha Evanjalin R; Sriranjani K; Dimple Abirami S; Guru Varshini B</small>
+          </div>
+          <div class="pub">
+            <h4>Potato Leaf Disease Detection using Deep Learning</h4>
+            <small>Publisher: IEEE<br>Authors: Sriranjani; Abinaya P; G. Sivakamasundari</small>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+<section class="card fade-up" id="journey" style="margin:20px 40px">
+  <h2 class="sub-title">My <span>Journey</span></h2>
+  <div class="timeline-container">
+    <div class="timeline">
+      <div class="milestone">
+        <div class="icon">🎓</div>
+        <div class="year">2021</div>
+        <p>Completed Schooling at Vailankanni Matric Hr Sec School, Bargur</p>
+      </div>
+      <div class="milestone">
+        <div class="icon">💻</div>
+        <div class="year">2021–2025</div>
+        <p>B.E(Honor) Computer Science at National Engineering College, Kovilpatti</p>
+      </div>
+      <div class="milestone">
+        <div class="icon">🚀</div>
+        <div class="year">2023</div>
+        <p>Completed Internships in Web Development and Machine Learning</p>
+      </div>
+      <div class="milestone">
+        <div class="icon">🧠</div>
+        <div class="year">2024</div>
+        <p>Published IEEE Papers (MedConnect & Potato Leaf Disease Detection)</p>
+      </div>
+      <div class="milestone">
+        <div class="icon">🏢</div>
+        <div class="year">2025</div>
+        <p>Joined Hudsmer Business Solution, Chennai as Software Engineer</p>
+      </div>
+      <div class="milestone">
+        <div class="icon">🌟</div>
+        <div class="year">Now</div>
+        <p>Growing in Full Stack Development at Hudsmer Business Solution</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="card" id="contact" style="margin:20px 40px">
+    <h2 class="sub-title">Contact</h2>
+    <div class="contact-grid">
+      <div style="flex:1;min-width:280px">
+        <p class="muted">Available for frontend & mobile roles, contract work, and collaborations.</p>
+        <div style="margin-top:12px">
+          <strong>Email:</strong> kumararajasriranjani@gmail.com<br>
+          <strong>Phone:</strong> +91 7305541304
+      </div>
+        <div style="margin-top:12px">
+          <a href="https://www.linkedin.com/in/sri-ranjani-k-76a377224" class="badge">LinkedIn</a>
+          <a href="wpQR.jpg" class="badge">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="contact-form" style="flex:1;min-width:280px">
+        <form onsubmit="handleContact(event)">
+          <input type="text" placeholder="Enter Your Name" required>
+          <input type="email" placeholder="Enter Your Email" required>
+          <textarea cols="30" rows="6" placeholder="Enter Your Message" required></textarea>
+          <button class="send" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:18px;color:var(--muted)">© <span id="year"></span> Sriranjani K — Built with React-friendly patterns • Available on request</footer>
+
+  <script>
+    const typed = new Typed('#typed-role', {
+      strings: ['Frontend Engineer','React Developer','React Native Developer','Full Stack Enthusiast'],
+      typeSpeed:60,backSpeed:40,backDelay:1500,loop:true
+    });
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    function handleContact(e){
+      e.preventDefault();
+      alert('Thanks! Your message was captured locally. Connect via email or LinkedIn for follow-up.');
+      e.target.reset();
+    }
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(ent=>{if(ent.isIntersecting) ent.target.style.animationDelay = '0.06s', ent.target.classList.add('visible')})
+    },{threshold:.08});
+    fadeEls.forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
